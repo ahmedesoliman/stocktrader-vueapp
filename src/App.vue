@@ -1,32 +1,58 @@
-<template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+<template lang="pug">
+  .container
+    .row
+      .col-md-12
+        app-header
+    .row
+      .col-md-12
+        transition(name="slide", mode="out-in")
+          router-view
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+  import Header from './components/Header.vue'
 
-#nav {
-  padding: 30px;
+  import * as types from './store/types'
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+  export default {
+    name: 'app',
+    components: {
+      'app-header': Header
+    },
+    created() {
+      this.$store.dispatch(types.SETUP_STOCKS)
     }
   }
-}
+</script>
+
+<style lang="sass" scoped>
+  .dropdown-item
+    color: rgba(255, 255, 255, .8)
+
+    &:hover
+      background-color: rgb(40, 40, 40)
+
+  .slide-enter-active, .slide-leave-active
+    transition: all .3s ease-in-out
+
+  .slide-enter, .slide-leave-to
+    opacity: 0
+
+  .slide-enter-active
+    animation: slideIn .3s
+
+  .slide-leave-to
+    animation: slideOut .3s
+
+  @keyframes slideIn
+    0%
+      transform: translateY(-20px)
+    100%
+      transform: translateY(0)
+
+  @keyframes slideOut
+    0%
+      transform: translateY(0)
+    100%
+      transform: translateY(20px)
 </style>
