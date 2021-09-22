@@ -7,6 +7,11 @@ export default [
   { id: 5, name: "Amazon", price: randomCost(90) },
   { id: 6, name: "Ford", price: randomCost(5) },
   { id: 6, name: "Toyota", price: randomCost(16) },
+  { id: 3, name: "Samsung", price: randomCost(89) },
+  { id: 4, name: "Dodge", price: randomCost(33) },
+  { id: 5, name: "HP", price: randomCost(90) },
+  { id: 6, name: "Dell", price: randomCost(5) },
+  { id: 6, name: "IBM", price: randomCost(16) },
 ];
 
 function randomCost(n) {
